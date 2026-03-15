@@ -238,7 +238,7 @@ async function handleResults(userId: string, groupId: string): Promise<void> {
   }
 
   const lines = poll.options.map(
-    (option, index) => `${index + 1}) ${option} — ${counts[index]} votes`,
+    (option, index) => `${index + 1}) ${option} - ${counts[index]} votes`,
   );
   await sendToGroup(groupId, `Results:\n${lines.join("\n")}`);
 }
