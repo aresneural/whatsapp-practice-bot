@@ -232,7 +232,7 @@ async function handleResults(userId: string, groupId: string): Promise<void> {
   for (const voteIndexes of Object.values(poll.votes)) {
     for (const voteIndex of voteIndexes) {
       if (voteIndex >= 0 && voteIndex < counts.length) {
-        counts[voteIndex] += 1;
+        counts[voteIndex] = (counts[voteIndex] ?? 0) + 1;
       }
     }
   }
@@ -288,7 +288,8 @@ async function handleIncomingTextMessage(msg: IncomingTextMessage): Promise<void
     }
 
     const lines = messageText.split(/\r?\n/);
-    const commandLine = lines[0].replace(/@PracticeBot/i, "").trim();
+    const firstLine = lines[0] ?? "";
+    const commandLine = firstLine.replace(/@PracticeBot/i, "").trim();
     const [commandRaw, ...commandArgs] = commandLine.split(/\s+/).filter(Boolean);
     const command = commandRaw?.toLowerCase();
     if (!command) {
