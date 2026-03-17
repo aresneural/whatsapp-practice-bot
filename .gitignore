@@ -1,3 +1,5 @@
 node_modules
 .env
 dist
+.bot-state.json
+.bot-state.json.tmp
